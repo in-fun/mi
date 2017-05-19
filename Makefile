@@ -220,7 +220,7 @@ with-mlton: hamlet-mlton${EXE}
 with-mlton+: with-mlton
 
 hamlet-mlton${EXE}: hamlet.mlb main/wrap-mlton.sml ${FILES}
-	mlton -output hamlet-mlton${EXE} hamlet.mlb
+	mlton -output hamlet-mlton${EXE} -prefer-abs-paths true -show-def-use hamlet.du hamlet.mlb
 
 clean-mlton:
 	rm -f hamlet-mlton
