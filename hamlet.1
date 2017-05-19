@@ -1,0 +1,72 @@
+.TH HAMLET 1 "April 05, 2013"
+.SH NAME
+hamlet \- faithful implementation of the Standard ML programming language
+.SH SYNOPSIS
+.B hamlet
+.RI [ mode ]
+.RI [ file " ...]"
+.br
+.SH DESCRIPTION
+.B HaMLet
+is a faithful implementation of the Standard ML programming language (SML'97).
+It aims to be
+.IP \(bu 4
+an accurate reference implementation of the language specification,
+.IP \(bu 4
+a platform for experimentation with language semantics or extensions to it,
+.IP \(bu 4
+a useful tool for educational purposes.
+.PP
+The implementation is intended to be as direct a translation of the
+language formalisation found in
+.I "The Definition of Standard ML"
+as possible, modulo bug fixes. It tries hard to get all details of the
+Definition right.
+.PP
+.B HaMLet
+can perform different phases of execution - like parsing, elaboration
+(type checking), and evaluation - selectively. In particular, it is possible to
+execute programs in an untyped manner, thus exploring the universe where even
+ML programs "can go wrong".  It should be emphasized that 
+.B HaMLet
+is by no means a development system, but has been solely written with the
+aforementioned goal of experimentation in mind. Interpretation is highly
+inefficient (since it is a direct implementation of the semantic rules) and
+error messages are very taciturn.
+.PP
+If no file argument has been given,
+.B HaMLet
+will enter an interactive session. Input may spread multiple lines and is terminated by either an empty line, or a line whose last character is a semicolon. The session can be aborted via Ctrl-D.
+.PP
+Otherwise, all files are processed in order of appearance.
+.B HaMLet
+interprets the SML Definition very strictly and thus requires every source file to be terminated by a semicolon.
+.PP
+A file name may be prefixed by @ in which case it is taken to be an indirection file containing a white space separated list of other file names and expands to that list. Expansion is done recursively.
+.SH OPTIONS
+The
+.I mode
+option controls how 
+.B HaMLet
+processes its input.  It is one of
+.TP
+.B \-p
+parsing mode (only parse input)
+.TP
+.B \-l
+elaboration mode (parse and elaborate input)
+.TP
+.B \-v
+evaluation mode (parse and evaluate input)
+.TP
+.B \-x
+execution mode (parse, elaborate, and evaluate input) [default]
+.TP
+.B \-j
+compilation mode (parse, elaborate, and compile to JavaScript)
+.SH SEE ALSO
+http://mpi-sws.org/~rossberg/hamlet/
+.PP
+Robin Milner, Mads Tofte, Robert Harper, David MacQueen,
+.IR "The Definition of Standard ML (Revised)" .
+The MIT Press, 1997.
